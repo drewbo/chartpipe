@@ -7,7 +7,27 @@ var concat = require('concat-stream'),
         version: '3.0.0',
         protocol: 'https'
     }),
+    argv = require('minimist')(process.argv.slice(2), {
+        boolean: 'help'
+    }),
     open = require('open');
+
+var charts = fs.readdirSync(__dirname + '/templates/');
+var typenames = charts.map(function(c) {
+    return c.replace(/\.html$/, '');
+}).join(',');
+
+if (argv.help) {
+    console.log('usage: chartpipe < data');
+    console.log('usage: process | chartpipe');
+    console.log('available charts: ' + typenames);
+}
+
+var type = argv.type || 'groupedbars';
+
+if (charts.indexOf(type + '.html') === -1) {
+    throw new Error('chart type ' + type + ' not found, choices: ' + typenames);
+}
 
 console.log('Waiting for input...');
 
@@ -20,7 +40,7 @@ process.stdin.pipe(concat(function(data) {
                 content: data.toString()
             },
             'index.html': {
-                content: fs.readFileSync(__dirname + '/templates/groupedbars.html', 'utf8')
+                content: fs.readFileSync(__dirname + '/templates/' + type + '.html', 'utf8')
             }
         }
     }, function (err, res) {

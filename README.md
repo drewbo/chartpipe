@@ -13,3 +13,11 @@ Does what it says on the tin.
 ```sh
 $ commandthatoutputscsv | chartpipe
 ```
+
+## arguments
+
+```
+--help: show help
+--type=groupedbars
+    (there will be more types someday)
+```
