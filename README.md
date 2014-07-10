@@ -2,7 +2,7 @@
 
 Does what it says on the tin.
 
-[Imgur](http://i.imgur.com/ElpdZco.gif)
+![Imgur](http://i.imgur.com/ElpdZco.gif)
 
 ## install
 
