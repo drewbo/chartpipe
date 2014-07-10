@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var concat = require('concat-stream'),
     fs = require('fs'),
     GitHubApi = require('github'),
