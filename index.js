@@ -27,7 +27,7 @@ process.stdin.pipe(concat(function(data) {
         if (err) {
             console.error('Unable to create Gist:' + JSON.stringify(res));
         } else {
-            open('https://bl.ocks.org/d/' + res.id);
+            open('http://bl.ocks.org/' + res.id);
         }
     });
 }));
