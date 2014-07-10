@@ -2,6 +2,8 @@
 
 Does what it says on the tin.
 
+[Imgur](http://i.imgur.com/ElpdZco.gif)
+
 ## install
 
     npm install -g chartpipe
