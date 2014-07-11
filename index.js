@@ -12,6 +12,7 @@ var concat = require('concat-stream'),
 console.log('Waiting for input...');
 
 process.stdin.pipe(concat(function(data) {
+    var charttype = 'histogram'  //however this functionality ends up workin
     github.gists.create({
         description: '/dev/chartpipe',
         public: true,
@@ -20,7 +21,7 @@ process.stdin.pipe(concat(function(data) {
                 content: data.toString()
             },
             'index.html': {
-                content: fs.readFileSync(__dirname + '/templates/groupedbars.html', 'utf8')
+                content: fs.readFileSync(__dirname + '/templates/' + charttype + '.html', 'utf8')
             }
         }
     }, function (err, res) {

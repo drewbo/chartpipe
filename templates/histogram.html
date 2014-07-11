@@ -57,9 +57,9 @@ var svg = d3.select("body").append("svg")
 
 d3.csv("data.csv", function(error, data) {
 
-  x.domain([0, 1])
+  x.domain([0, d3.max(data, function(d) { return d.x; })])
   y.domain([0, d3.max(data, function(d) { return d.y; })])
-  
+
   var bar = svg.selectAll(".bar")
       .data(data)
     .enter().append("g")
