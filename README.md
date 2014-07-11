@@ -18,10 +18,16 @@ Other data layouts and chart types are welcome: please contribute!
 $ commandthatoutputscsv | chartpipe
 ```
 
+## examples
+
+* [histogram type](http://bl.ocks.org/anonymous/90e80fd9fcb804ce2469)
+* [grouped bars type](http://bl.ocks.org/anonymous/2fa1e2f1907471fdb49b)
+
 ## arguments
 
 ```
 --help: show help
 --type=groupedbars
+--type=histogram
     (there will be more types someday)
 ```
