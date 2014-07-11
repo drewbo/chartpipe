@@ -1,0 +1,11 @@
+file,geojson,pbf,pbfpacked
+test/data/feature.json,131,63,47
+test/data/geometry.json,68,36,29
+test/data/geometrycollection.json,271,129,68
+test/data/linestring.json,175,100,55
+test/data/multilinestring.json,212,150,76
+test/data/multipoint.json,175,100,55
+test/data/multipolygon.json,369,373,157
+test/data/point.json,176,73,57
+test/data/polygon.json,276,250,99
+test/data/singlegeometrycollection.json,163,105,53

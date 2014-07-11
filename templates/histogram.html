@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 10px sans-serif;
+}
+
+.bar {
+  fill: steelblue;
+  shape-rendering: crispEdges;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.y.axis path {
+  display: none;
+}
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+var margin = {top: 20, right: 30, bottom: 30, left: 40},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var x = d3.scale.linear()
+    .domain([0, 10])
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .domain([0, 10])
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .tickFormat(d3.format("2r"));
+
+var histogram = d3.layout.histogram()
+    .bins(x.ticks(10));
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis)
+
+svg.append("g")
+    .attr("class", "y axis")
+    .call(yAxis);
+
+d3.csv("data.csv", function(error, input) {
+
+  var dataset = input.map(function(d) { return d["value"]; });
+  var data = histogram(dataset);
+
+  svg.selectAll(".bar")
+      .data(data)
+    .enter().insert("rect", ".axis")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.x) + 1; })
+      .attr("y", function(d) { return y(d.y); })
+      .attr("width", x(data[0].dx + data[0].x) - x(data[0].x) - 1)
+      .attr("height", function(d) { return height - y(d.y); });
+
+});
+
+</script>
