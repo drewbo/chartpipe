@@ -27,16 +27,14 @@ body {
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 
-var margin = {top: 20, right: 30, bottom: 30, left: 40},
+var margin = {top: 20, right: 30, bottom: 40, left: 40},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 var x = d3.scale.linear()
-    .domain([0, 10])
     .range([0, width]);
 
 var y = d3.scale.linear()
-    .domain([0, 10])
     .range([height, 0]);
 
 var xAxis = d3.svg.axis()
@@ -48,28 +46,39 @@ var yAxis = d3.svg.axis()
     .orient("left")
     .tickFormat(d3.format("2r"));
 
-var histogram = d3.layout.histogram()
-    .bins(x.ticks(10));
-
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-svg.append("g")
+d3.csv("data.csv", function(error, input) {
+  var name = d3.keys(input[0]).slice(0) // quantity name
+  var dataset = input.map(function(d) { return +d[name]; }); // read input data
+
+  x.domain(d3.extent(dataset)) // set x domain
+
+  var histogram = d3.layout.histogram() // initialize a histogram generator
+      .bins(x.ticks(10));
+
+  var data = histogram(dataset); // get our histogram data
+
+  y.domain(d3.extent(data, function(d) { return d.y; })) // set the y domain
+
+  svg.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0," + height + ")")
     .call(xAxis)
+    .append("text")
+    .attr("class", "label")
+    .attr("x", width/2)
+    .attr("y", 30)
+    .style("text-anchor", "end")
+    .text(name);
 
-svg.append("g")
+  svg.append("g")
     .attr("class", "y axis")
     .call(yAxis);
-
-d3.csv("data.csv", function(error, input) {
-
-  var dataset = input.map(function(d) { return d["value"]; });
-  var data = histogram(dataset);
 
   svg.selectAll(".bar")
       .data(data)
