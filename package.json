@@ -1,7 +1,7 @@
 {
   "name": "chartpipe",
   "version": "0.0.6",
-  "description": "create a chart, dummy",
+  "description": "pipe data into charts",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,10 +17,10 @@
   "author": "Tom MacWright",
   "license": "ISC",
   "dependencies": {
-    "github": "~0.2.1",
+    "github": "0.2.1",
     "open": "0.0.5",
-    "minimist": "~0.2.0",
-    "rw": "~0.1.1",
+    "minimist": "0.2.0",
+    "rw": "0.1.1",
     "dsv": "0.0.3"
   }
 }

@@ -19,14 +19,23 @@ var typenames = charts.map(function(c) {
 }).join(',');
 
 if (argv.help) {
-    console.log('usage: chartpipe < data');
-    console.log('usage: process | chartpipe');
-    console.log('usage: chartpipe file.csv');
-    console.log('usage: chartpipe --type=groupedbars file.csv');
-    console.log('usage: chartpipe --type=histogram file.csv');
-    console.log('usage: chartpipe --type=line file.csv')
-    console.log('usage: chartpipe --format=tsv file.tsv')
+    console.log('input:');
+    console.log('  chartpipe < data');
+    console.log('  process | chartpipe');
+    console.log('  chartpipe file.csv');
+    console.log('');
+    console.log('arguments:');
+    console.log('  --type=CHARTTYPE');
+    console.log('  --format=INPUTFORMAT');
+    console.log('');
+    console.log('examples:');
+    console.log('  chartpipe --type=groupedbars file.csv');
+    console.log('  chartpipe --type=histogram file.csv');
+    console.log('  chartpipe --type=line file.csv')
+    console.log('  chartpipe --format=tsv file.tsv')
+    console.log('');
     console.log('available charts: ' + typenames);
+    console.log('input formats: csv, tsv (default: csv)');
     return;
 }
 

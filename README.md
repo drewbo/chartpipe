@@ -30,5 +30,5 @@ $ commandthatoutputscsv | chartpipe
 --help: show help
 --type=groupedbars
 --type=histogram
-    (there will be more types someday)
+--type=line
 ```
