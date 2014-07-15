@@ -63,8 +63,6 @@ d3.csv("data.csv", function(error, data) {
   var series = d3.keys(data[0]).slice(0);
   color.domain(d3.keys(data[0]).filter(function(key) { return key !== series[0]; }));
 
-  console.log(data)
-
   var metrics = color.domain().map(function(name) {
     return {
       name: name,
@@ -73,8 +71,6 @@ d3.csv("data.csv", function(error, data) {
       })
     };
   });
-
-  console.log(metrics)
 
   x.domain(d3.extent(data, function(d) { return d[series[0]]; }));
 
@@ -101,8 +97,6 @@ d3.csv("data.csv", function(error, data) {
       .attr("class", "line")
       .attr("d", function(d) { return line(d.values); })
       .style("stroke", function(d) { return color(d.name); });
-
-  console.log(metrics.values)
 
   group.append("text")
       .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })

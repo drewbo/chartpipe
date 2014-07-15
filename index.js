@@ -6,6 +6,7 @@ var fs = require('fs'),
         version: '3.0.0',
         protocol: 'https'
     }),
+    dsv = require('dsv'),
     rw = require('rw'),
     argv = require('minimist')(process.argv.slice(2), {
         boolean: 'help'
@@ -23,7 +24,8 @@ if (argv.help) {
     console.log('usage: chartpipe file.csv');
     console.log('usage: chartpipe --type=groupedbars file.csv');
     console.log('usage: chartpipe --type=histogram file.csv');
-    console.log('usage: chartpipe --type=linechart file.csv')
+    console.log('usage: chartpipe --type=line file.csv')
+    console.log('usage: chartpipe --format=tsv file.tsv')
     console.log('available charts: ' + typenames);
     return;
 }
@@ -39,6 +41,8 @@ var input = argv._.length ?
     rw.readFileSync('/dev/stdin', 'utf8');
 
 var indexhtml = fs.readFileSync(__dirname + '/templates/' + type + '.html', 'utf8');
+
+if (argv.format === 'tsv') input = dsv.csv.format(dsv.tsv.parse(input));
 
 github.gists.create({
     description: '/dev/chartpipe',
