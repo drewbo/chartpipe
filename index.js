@@ -6,6 +6,7 @@ var fs = require('fs'),
         version: '3.0.0',
         protocol: 'https'
     }),
+    dsv = require('dsv'),
     rw = require('rw'),
     argv = require('minimist')(process.argv.slice(2), {
         boolean: 'help'
@@ -18,6 +19,7 @@ var typenames = charts.map(function(c) {
 }).join(',');
 
 if (argv.help) {
+<<<<<<< HEAD
     console.log('usage: chartpipe < data');
     console.log('usage: process | chartpipe');
     console.log('usage: chartpipe file.csv');
@@ -25,7 +27,25 @@ if (argv.help) {
     console.log('usage: chartpipe --type=histogram file.csv');
     console.log('usage: chartpipe --type=linechart file.csv')
     console.log('usage: chartpipe --type=stackedbars file.csv')
+=======
+    console.log('input:');
+    console.log('  chartpipe < data');
+    console.log('  process | chartpipe');
+    console.log('  chartpipe file.csv');
+    console.log('');
+    console.log('arguments:');
+    console.log('  --type=CHARTTYPE');
+    console.log('  --format=INPUTFORMAT');
+    console.log('');
+    console.log('examples:');
+    console.log('  chartpipe --type=groupedbars file.csv');
+    console.log('  chartpipe --type=histogram file.csv');
+    console.log('  chartpipe --type=line file.csv')
+    console.log('  chartpipe --format=tsv file.tsv')
+    console.log('');
+>>>>>>> 86c817dcca71b49e1994395d13052c169c31b2b5
     console.log('available charts: ' + typenames);
+    console.log('input formats: csv, tsv (default: csv)');
     return;
 }
 
@@ -40,6 +60,8 @@ var input = argv._.length ?
     rw.readFileSync('/dev/stdin', 'utf8');
 
 var indexhtml = fs.readFileSync(__dirname + '/templates/' + type + '.html', 'utf8');
+
+if (argv.format === 'tsv') input = dsv.csv.format(dsv.tsv.parse(input));
 
 github.gists.create({
     description: '/dev/chartpipe',

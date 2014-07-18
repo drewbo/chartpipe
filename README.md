@@ -22,6 +22,7 @@ $ commandthatoutputscsv | chartpipe
 
 * [histogram type](http://bl.ocks.org/anonymous/90e80fd9fcb804ce2469)
 * [grouped bars type](http://bl.ocks.org/anonymous/2fa1e2f1907471fdb49b)
+* [line chart](http://bl.ocks.org/anonymous/21c511a8646eac688e27)
 
 ## arguments
 
@@ -29,5 +30,5 @@ $ commandthatoutputscsv | chartpipe
 --help: show help
 --type=groupedbars
 --type=histogram
-    (there will be more types someday)
+--type=line
 ```
