@@ -24,6 +24,7 @@ if (argv.help) {
     console.log('usage: chartpipe --type=groupedbars file.csv');
     console.log('usage: chartpipe --type=histogram file.csv');
     console.log('usage: chartpipe --type=linechart file.csv')
+    console.log('usage: chartpipe --type=stackedbars file.csv')
     console.log('available charts: ' + typenames);
     return;
 }
