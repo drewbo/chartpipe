@@ -1,6 +1,6 @@
 {
   "name": "chartpipe",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "pipe data into charts",
   "main": "index.js",
   "scripts": {

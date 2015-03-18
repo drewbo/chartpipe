@@ -31,4 +31,5 @@ $ commandthatoutputscsv | chartpipe
 --type=groupedbars
 --type=histogram
 --type=line
+--print-url
 ```

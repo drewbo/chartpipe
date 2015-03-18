@@ -9,7 +9,7 @@ var fs = require('fs'),
     dsv = require('dsv'),
     rw = require('rw'),
     argv = require('minimist')(process.argv.slice(2), {
-        boolean: 'help'
+        boolean: ['help', 'print-url']
     }),
     open = require('open');
 
@@ -36,11 +36,12 @@ if (argv.help) {
     console.log('arguments:');
     console.log('  --type=CHARTTYPE');
     console.log('  --format=INPUTFORMAT');
+    console.log('  --print-url (instead of opening)');
     console.log('');
     console.log('examples:');
     console.log('  chartpipe --type=groupedbars file.csv');
     console.log('  chartpipe --type=histogram file.csv');
-    console.log('  chartpipe --type=line file.csv')
+    console.log('  chartpipe --type=line --print-url file.csv')
     console.log('  chartpipe --format=tsv file.tsv')
     console.log('');
 >>>>>>> 86c817dcca71b49e1994395d13052c169c31b2b5
@@ -74,6 +75,11 @@ github.gists.create({
     if (err) {
         console.error('Unable to create Gist:' + JSON.stringify(res));
     } else {
-        open('http://bl.ocks.org/' + res.id);
+        var url = 'http://bl.ocks.org/' + res.id;
+        if (argv['print-url']) {
+            console.log(url);
+        } else {
+            open(url);
+        }
     }
 });
