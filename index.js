@@ -33,6 +33,7 @@ if (argv.help) {
     console.log('  chartpipe --type=groupedbars file.csv');
     console.log('  chartpipe --type=histogram file.csv');
     console.log('  chartpipe --type=line --print-url file.csv')
+    console.log('  chartpipe --type=stackedbars file.csv')
     console.log('  chartpipe --format=tsv file.tsv')
     console.log('');
     console.log('available charts: ' + typenames);
